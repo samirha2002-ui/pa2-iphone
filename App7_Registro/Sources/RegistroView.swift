@@ -32,10 +32,10 @@ struct RegistroView: View {
                         .autocorrectionDisabled()
                 }
 
-                Section("Credenciales") {
-                    SecureField("Contraseña (mín. 6 caracteres)", text: $password)
-                        .textContentType(.newPassword)
-                }
+       Section("Credenciales") {
+       SecureField("Contraseña (mín. 6 caracteres)", text: $password)
+   }
+   
 
                 Section("Preferencias") {
                     Toggle("Recibir novedades por correo", isOn: $recibirNovedades)
