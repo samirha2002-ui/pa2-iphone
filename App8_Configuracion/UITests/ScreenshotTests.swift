@@ -33,7 +33,11 @@ final class ScreenshotTests: XCTestCase {
         shot("01_principal_wifi_desactivado")
         tap(btn("Abrir configuración"))
         shot("02_sheet_configuracion")
-        tap(app.switches.firstMatch)
+        // Tap en el extremo derecho de la fila, donde esta el interruptor
+        let wifi = app.switches.firstMatch
+        if wifi.waitForExistence(timeout: 5) {
+            wifi.coordinate(withNormalizedOffset: CGVector(dx: 0.93, dy: 0.5)).tap()
+        }
         shot("03_sheet_wifi_activado")
         tap(btn("Listo"))
         shot("04_principal_wifi_activado")
