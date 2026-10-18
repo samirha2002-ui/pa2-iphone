@@ -40,8 +40,11 @@ final class ScreenshotTests: XCTestCase {
         let clave = app.secureTextFields.firstMatch
         tap(clave); clave.typeText("123456")
         hideKeyboard()
-        app.swipeUp()
-        tap(app.switches.element(boundBy: 1))
+        // Tap en el extremo derecho de la fila, donde esta el interruptor
+        let terminos = app.switches.element(boundBy: 1)
+        if terminos.waitForExistence(timeout: 5) {
+            terminos.coordinate(withNormalizedOffset: CGVector(dx: 0.93, dy: 0.5)).tap()
+        }
         shot("02_formulario_completo")
         tap(btn("Registrar"))
         shot("03_sheet_registro_exitoso")
